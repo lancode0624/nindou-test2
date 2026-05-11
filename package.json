@@ -1,0 +1,15 @@
+{
+  "name": "2-c-users-lane6-onedrive-desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "game.js",
+  "scripts": {
+    "check": "node --check game.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.59.1"
+  }
+}
