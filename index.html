@@ -1,0 +1,241 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nindou 2 Offline Prototype</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="room-mode">
+  <main class="app">
+    <section class="stage">
+      <section id="roomScreen" class="room-screen" aria-label="房間畫面">
+        <div class="room-frame">
+          <header class="room-topbar">
+            <button id="ruleModeToggle" type="button" class="room-rule-toggle" aria-pressed="false" aria-label="忍2原版">
+              <span class="room-rule-checkbox">
+                <img class="room-rule-checkbox-base" src="assets/room/waiting_room/checkbox.png" alt="">
+                <img id="ruleModeCheckbox" class="room-rule-checkbox-check" src="assets/room/waiting_room/checkbox_checked.png" alt="">
+              </span>
+              <span>忍2原版</span>
+            </button>
+            <div class="room-title-cell"><span>模式</span><strong>拯救公主</strong></div>
+            <button type="button" class="room-leave-btn" aria-label="離開"></button>
+          </header>
+
+          <aside class="team-tabs" aria-label="隊伍">
+            <button id="teamEditBtn" type="button" class="team-edit-btn" aria-label="編輯">編輯</button>
+            <div class="team-tab team-tab-blue active">青組</div>
+            <div class="team-tab team-tab-grey">灰組</div>
+          </aside>
+
+          <div class="player-grid" aria-label="玩家卡片">
+            <article class="room-player-card host blue active-slot" data-team="blue" data-slot="1">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">blue1</div>
+              <img class="room-avatar" src="assets/room/ui/b_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level"></div>
+              <img class="room-owner" src="assets/room/ui/room_owner.png" alt="室長">
+              <input class="room-hp-input" data-team="blue" data-slot="1" type="number" min="1" max="9999" step="1" value="300" aria-label="Blue 1 血量">
+              <select class="room-control-select" data-team="blue" data-slot="1" aria-label="Blue 1 控制">
+                <option value="player" selected>玩家</option>
+                <option value="ai_beginner">初心者</option>
+                <option value="ai_money_dart_master">錢鏢神人</option>
+                <option value="ai_dart_only_master">尬鏢神人</option>
+              </select>
+              <select class="room-weapon-select" data-team="blue" data-slot="1" aria-label="Blue 1 武器">
+                <option value="weapon1" selected>苦無</option>
+                <option value="weapon3">忍太刀</option>
+                <option value="weapon4">伊賀密刀</option>
+                <option value="weapon6">鐵扇不知火</option>
+              </select>
+            </article>
+            <article class="room-player-card blue" data-team="blue" data-slot="2">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">blue2</div>
+              <img class="room-avatar" src="assets/room/ui/b_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level">99段　身份: 疾風大將</div>
+              <img class="room-ready" src="assets/room/ui/player_not_ready.png" alt="未準備">
+              <input class="room-hp-input" data-team="blue" data-slot="2" type="number" min="1" max="9999" step="1" value="300" aria-label="Blue 2 血量">
+              <select class="room-control-select" data-team="blue" data-slot="2" aria-label="Blue 2 控制"></select>
+              <select class="room-weapon-select" data-team="blue" data-slot="2" aria-label="Blue 2 武器"></select>
+            </article>
+            <article class="room-player-card blue" data-team="blue" data-slot="3">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">blue3</div>
+              <img class="room-avatar" src="assets/room/ui/b_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level">99段　身份: 下忍</div>
+              <img class="room-ready" src="assets/room/ui/player_not_ready.png" alt="未準備">
+              <input class="room-hp-input" data-team="blue" data-slot="3" type="number" min="1" max="9999" step="1" value="300" aria-label="Blue 3 血量">
+              <select class="room-control-select" data-team="blue" data-slot="3" aria-label="Blue 3 控制"></select>
+              <select class="room-weapon-select" data-team="blue" data-slot="3" aria-label="Blue 3 武器"></select>
+            </article>
+            <article class="room-player-card blue" data-team="blue" data-slot="4">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">blue4</div>
+              <img class="room-avatar" src="assets/room/ui/b_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level">20段　身份: 初心者</div>
+              <img class="room-ready" src="assets/room/ui/player_not_ready.png" alt="未準備">
+              <input class="room-hp-input" data-team="blue" data-slot="4" type="number" min="1" max="9999" step="1" value="300" aria-label="Blue 4 血量">
+              <select class="room-control-select" data-team="blue" data-slot="4" aria-label="Blue 4 控制"></select>
+              <select class="room-weapon-select" data-team="blue" data-slot="4" aria-label="Blue 4 武器"></select>
+            </article>
+            <article class="room-player-card grey active-slot" data-team="grey" data-slot="1">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">grey1</div>
+              <img class="room-avatar" src="assets/room/ui/g_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level"></div>
+              <img class="room-ready" src="assets/room/ui/player_not_ready.png" alt="未準備">
+              <input class="room-hp-input" data-team="grey" data-slot="1" type="number" min="1" max="9999" step="1" value="300" aria-label="Grey 1 血量">
+              <select class="room-control-select" data-team="grey" data-slot="1" aria-label="Grey 1 控制"></select>
+              <select class="room-weapon-select" data-team="grey" data-slot="1" aria-label="Grey 1 武器"></select>
+            </article>
+            <article class="room-player-card grey" data-team="grey" data-slot="2">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">grey2</div>
+              <img class="room-avatar" src="assets/room/ui/g_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level">22段　身份: 中忍</div>
+              <img class="room-ready" src="assets/room/ui/player_not_ready.png" alt="未準備">
+              <input class="room-hp-input" data-team="grey" data-slot="2" type="number" min="1" max="9999" step="1" value="300" aria-label="Grey 2 血量">
+              <select class="room-control-select" data-team="grey" data-slot="2" aria-label="Grey 2 控制"></select>
+              <select class="room-weapon-select" data-team="grey" data-slot="2" aria-label="Grey 2 武器"></select>
+            </article>
+            <article class="room-player-card grey" data-team="grey" data-slot="3">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">grey3</div>
+              <img class="room-avatar" src="assets/room/ui/g_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level">18段　身份: 中忍</div>
+              <img class="room-ready" src="assets/room/ui/player_not_ready.png" alt="未準備">
+              <input class="room-hp-input" data-team="grey" data-slot="3" type="number" min="1" max="9999" step="1" value="300" aria-label="Grey 3 血量">
+              <select class="room-control-select" data-team="grey" data-slot="3" aria-label="Grey 3 控制"></select>
+              <select class="room-weapon-select" data-team="grey" data-slot="3" aria-label="Grey 3 武器"></select>
+            </article>
+            <article class="room-player-card grey" data-team="grey" data-slot="4">
+              <button type="button" class="room-slot-remove" aria-label="刪除">×</button>
+              <button type="button" class="room-slot-add" aria-label="新增">新增</button>
+              <div class="room-name">grey4</div>
+              <img class="room-avatar" src="assets/room/ui/g_team.png" alt="">
+              <img class="room-avatar-eye" src="assets/characters/parts/eyes-middle/11.png" alt="">
+              <div class="room-level">23段　身份: 上忍</div>
+              <img class="room-ready" src="assets/room/ui/player_not_ready.png" alt="未準備">
+              <input class="room-hp-input" data-team="grey" data-slot="4" type="number" min="1" max="9999" step="1" value="300" aria-label="Grey 4 血量">
+              <select class="room-control-select" data-team="grey" data-slot="4" aria-label="Grey 4 控制"></select>
+              <select class="room-weapon-select" data-team="grey" data-slot="4" aria-label="Grey 4 武器"></select>
+            </article>
+          </div>
+
+          <button id="battleStartBtn" type="button" class="battle-start-btn" aria-label="戰鬥開始">
+            <img src="assets/room/ui/start_button.png" alt="戰鬥開始">
+          </button>
+
+          <section class="chat-panel" aria-label="聊天">
+            <div class="chat-log">
+            </div>
+            <div class="chat-input"><span>一般</span><strong></strong><button type="button">送</button></div>
+          </section>
+
+          <section class="mode-panel" aria-label="模式">
+            <div class="mode-title">隨機忍二系列</div>
+            <div class="mode-preview">?</div>
+            <button type="button" class="mode-side side-a">編輯設定</button>
+            <button type="button" class="mode-side side-b">遊戲設定</button>
+          </section>
+
+          <section class="room-volume-panel" aria-label="音量">
+            <label class="room-volume-control">
+              <input id="musicVolume" type="range" min="0" max="100" value="2" orient="vertical">
+              <span>音樂</span>
+            </label>
+            <label class="room-volume-control">
+              <input id="sfxVolume" type="range" min="0" max="100" value="1" orient="vertical">
+              <span>音效</span>
+            </label>
+          </section>
+
+          <section id="ninjuEditor" class="room-ninju-editor" aria-label="忍術編輯" hidden>
+            <div class="ninju-editor-profile">
+              <img class="ninju-editor-avatar" src="assets/room/ui/b_team.png" alt="">
+              <div class="ninju-editor-stats">
+                <div><span>暱稱</span><strong>皇天不負工具人</strong><button type="button">更改</button></div>
+                <div><span>段數</span><strong>99</strong><span>職業</span><strong>夜遊神</strong></div>
+                <div><span>所屬公會</span><strong>管理團隊</strong></div>
+              </div>
+              <div class="ninju-editor-score">
+                <div><span>勝績</span><strong>15</strong><span>敗績</span><strong>19</strong></div>
+                <div><span>金</span><strong>2754073</strong></div>
+                <div><span>德</span><strong>2152363</strong></div>
+              </div>
+              <div class="ninju-editor-mark">忍</div>
+            </div>
+
+            <div class="ninju-editor-board">
+              <nav class="ninju-editor-tabs" aria-label="編輯分類">
+                <button class="active" type="button">忍術</button>
+                <button type="button">武器</button>
+                <button type="button">眼睛</button>
+                <button type="button">道具</button>
+              </nav>
+              <div class="ninju-editor-series" aria-label="忍術系別">
+                <span class="heal">回復系</span>
+                <span class="support">輔助系</span>
+                <span class="attack">攻擊系</span>
+                <span class="special">特殊系</span>
+                <span class="transform">變身系</span>
+              </div>
+              <div class="ninju-editor-panel">
+                <div class="ninju-editor-title">
+                  <span>請從已習得的忍術中挑選六個以便在戰鬥中使用</span>
+                  <button type="button">忍術介紹</button>
+                </div>
+                <div class="ninju-editor-slot-row">
+                  <div id="ninjuEditorSlots" class="ninju-editor-slots" aria-label="已選忍術"></div>
+                  <button id="ninjuEditorReset" class="ninju-editor-reset" type="button">重來</button>
+                </div>
+                <div id="ninjuEditorList" class="ninju-editor-list" aria-label="可選忍術"></div>
+              </div>
+              <div class="ninju-editor-actions">
+                <button id="ninjuEditorCancel" type="button">取消</button>
+                <button id="ninjuEditorSave" type="button">儲存</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+      <canvas id="game" width="960" height="680" aria-label="Nindou 2 offline grid battle"></canvas>
+      <div class="hud">
+        <div id="unitInfo" class="unit-info"></div>
+        <div class="meter" aria-hidden="true"><i id="skillFill"></i></div>
+        <button id="resetBtn" type="button" aria-label="Reset">Reset</button>
+      </div>
+      <p id="status" class="sr-only">Ready</p>
+    </section>
+  </main>
+  <script src="scripts/data/config.js"></script>
+  <script src="scripts/data/weapons.js"></script>
+  <script src="scripts/data/assets.js"></script>
+  <script src="scripts/data/rule-modes.js"></script>
+  <script src="scripts/systems/grid.js"></script>
+  <script src="scripts/data/map.js"></script>
+  <script src="scripts/systems/state-helpers.js"></script>
+  <script src="scripts/systems/ninjutsu.js"></script>
+  <script src="scripts/systems/combat.js"></script>
+  <script src="scripts/systems/movement.js"></script>
+  <script src="scripts/systems/ai.js"></script>
+  <script src="scripts/systems/match.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,1050 @@
+:root {
+  color-scheme: dark;
+  font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+  background: #071012;
+  color: #f4f7ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #071012;
+  overflow: hidden;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  padding: 6px;
+}
+
+.stage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  gap: 0;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+}
+
+canvas {
+  width: min(calc(100vw - 12px), calc((100vh - 12px) * 1.4117647));
+  height: auto;
+  max-height: calc(100vh - 12px);
+  display: block;
+  min-height: 0;
+  border: 0;
+  background: #18211f;
+  cursor: crosshair;
+}
+
+.room-mode canvas {
+  display: none;
+}
+
+.room-screen {
+  width: min(calc(100vw - 12px), calc((100vh - 12px) * 1.4117647));
+  aspect-ratio: 960 / 680;
+  color: #f8f2d7;
+}
+
+body:not(.room-mode) .room-screen {
+  display: none;
+}
+
+.room-frame {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(15, 7, 9, .08), rgba(15, 7, 9, .08)),
+    url("assets/room/ui/room-main-bg.png") center / 100% 100% no-repeat;
+}
+
+.room-topbar {
+  position: absolute;
+  left: 24px;
+  top: 18px;
+  right: 24px;
+  height: 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 54px;
+  gap: 18px;
+  align-items: center;
+  padding: 0 14px 0 16px;
+  background: rgba(1, 10, 16, .92);
+  border: 2px solid #7f2c25;
+  box-shadow: inset 0 0 0 2px #075b70;
+}
+
+.room-title-cell {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.room-rule-toggle {
+  min-width: 0;
+  height: 40px;
+  border: 0;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  background: transparent;
+  color: #f2f6e8;
+  font-size: 22px;
+  font-weight: 900;
+  text-shadow: 1px 1px 2px #0b1732;
+}
+
+.room-rule-toggle img {
+  width: 27px;
+  height: 27px;
+  display: block;
+}
+
+.room-rule-checkbox {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+}
+
+.room-rule-checkbox-base,
+.room-rule-checkbox-check {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.room-rule-checkbox-check {
+  opacity: 0;
+}
+
+.room-rule-toggle.checked .room-rule-checkbox-check {
+  opacity: 1;
+}
+
+.room-rule-toggle span {
+  line-height: 1;
+}
+
+.room-title-cell span {
+  color: #e3f4ff;
+  font-size: 22px;
+  font-weight: 900;
+  text-shadow: 2px 2px 0 #0b2460, 0 0 6px #103a6f;
+}
+
+.room-title-cell strong {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background: #02070a;
+  color: #d7f14b;
+  font-size: 23px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.room-leave-btn {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  padding: 0;
+  background: url("assets/room/ui/room-leave-button.png") center / contain no-repeat;
+}
+
+.team-tabs {
+  position: absolute;
+  left: 38px; /* ???/???/?箏??皜? X ?選??剖?謍梱?殉???剜????*/
+  top: 86px; /* ???/???/?箏??皜? Y ?選??剖?謍梱?殉???剜?????*/
+  width: 90px;
+  height: 220px;
+}
+
+.team-edit-btn {
+  position: absolute;
+  left: -18px; /* ?箏???? X ?選??剖?謍梱?殉???剜????*/
+  top: 0; /* ?箏???? Y ?選??剖?謍梱?殉???剜?????*/
+  width: 78px; /* ?箏??????瞍??*/
+  height: 44px; /* ?箏?????朱瞍??*/
+  border: 0;
+  padding: 0 0 4px; /* ?箏????????垮??綽????殉???剜????甄???*/
+  color: #fff2d0;
+  font-size: 23px; /* ?箏?????剜???*/
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 2px 2px 0 rgba(70, 20, 0, .75);
+  background: url("assets/room/ui/button-submit.png") center / 100% 100% no-repeat;
+  cursor: pointer;
+}
+
+.team-tab {
+  position: absolute;
+  width: 45px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  writing-mode: vertical-rl;
+  color: #fff7df;
+  font-size: 23px;
+  font-weight: 900;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, .5);
+  background: #707976;
+  border: 3px solid #b06437;
+  box-shadow: inset 0 0 0 2px #d8f3e4;
+}
+
+.team-tab-blue {
+  left: 18px; /* ??? X ?選??剖?謍梱?殉???剜????*/
+  top: 90px; /* ??? Y ?選??剖?謍梱?殉???剜?????*/
+}
+
+.team-tab-grey {
+  left: 18px; /* ??? X ?選??剖?謍梱?殉???剜????*/
+  top: 310px; /* ??? Y ?選??剖?謍梱?殉???剜?????*/
+}
+
+.team-tab.active {
+  background: #17849c;
+}
+
+.player-grid {
+  position: absolute;
+  left: 100px;
+  top: 88px;
+  right: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px 14px;
+}
+
+.room-player-card {
+  height: 220px;
+  position: relative;
+  padding: 14px 12px 12px;
+  background: url("assets/room/ui/room-player-area.png") center / 100% 100% no-repeat;
+}
+
+.room-slot-add {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 118px;
+  height: 44px;
+  border: 2px solid #0b3140;
+  border-radius: 6px;
+  background: linear-gradient(#f0e4bc, #c8a86c);
+  color: #2a1d0f;
+  font-size: 30px;
+  font-weight: 900;
+  font-family: "DFKai-SB", "KaiTi", "Microsoft JhengHei", serif;
+  line-height: 1;
+  z-index: 4;
+}
+
+.room-slot-remove {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #0b3140;
+  border-radius: 4px;
+  background: linear-gradient(#f8f6d2, #d8d2a2);
+  color: #1a1410;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0;
+  z-index: 5; /* series labels layer: bigger stays above panel. */
+}
+
+.room-player-card:not(.active-slot) .room-slot-add {
+  display: block;
+}
+
+.room-player-card:not(.active-slot) .room-name,
+.room-player-card:not(.active-slot) .room-avatar,
+.room-player-card:not(.active-slot) .room-avatar-eye,
+.room-player-card:not(.active-slot) .room-level,
+.room-player-card:not(.active-slot) .room-owner,
+.room-player-card:not(.active-slot) .room-ready,
+.room-player-card:not(.active-slot) .room-hp-input,
+.room-player-card:not(.active-slot) .room-control-select,
+.room-player-card:not(.active-slot) .room-weapon-select,
+.room-player-card:not(.active-slot) .room-slot-remove {
+  display: none;
+}
+
+.room-player-card[data-slot="1"] .room-slot-remove {
+  display: none;
+}
+
+.room-name {
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  background: url("assets/room/ui/name_bar.png") center / 100% 100% no-repeat;
+  color: #fff9e9;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 2px #190b35;
+}
+
+.room-avatar {
+  position: absolute;
+  left: 20px;
+  top: 78px;
+  width: 56px;
+  height: 54px;
+  image-rendering: auto;
+}
+
+.room-avatar-eye {
+  position: absolute;
+  left: 30px;
+  top: 94px;
+  width: 35px;
+  height: 15px;
+  image-rendering: auto;
+  pointer-events: none;
+}
+
+.room-level {
+  position: absolute;
+  left: 88px;
+  top: 90px;
+  right: 12px;
+  color: #021418;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.room-owner {
+  position: absolute;
+  left: 90px;
+  bottom: 58px;
+  width: 96px;
+  height: auto;
+}
+
+.room-ready {
+  position: absolute;
+  left: 88px;
+  bottom: 58px;
+  width: 106px;
+  height: auto;
+}
+
+.room-weapon-select {
+  position: absolute;
+  right: 10px;
+  bottom: 18px;
+  width: 76px;
+  height: 24px;
+  padding: 0 18px 0 6px;
+  border: 2px solid #0b3140;
+  border-radius: 3px;
+  background: linear-gradient(#f8f0b8, #d59d33);
+  color: #1c1205;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.room-control-select {
+  position: absolute;
+  left: 10px;
+  bottom: 18px;
+  width: 62px;
+  height: 24px;
+  padding: 0 16px 0 6px;
+  border: 2px solid #0b3140;
+  border-radius: 3px;
+  background: linear-gradient(#e5f7ff, #55a7c8);
+  color: #05141a;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.room-hp-input {
+  position: absolute;
+  left: 10px;
+  width: 62px;
+  bottom: 52px;
+  height: 24px;
+  padding: 0 8px;
+  border: 2px solid #0b3140;
+  border-radius: 3px;
+  background: linear-gradient(#f8f6d2, #d8d2a2);
+  color: #111;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.room-hp-input::-webkit-outer-spin-button,
+.room-hp-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.battle-start-btn {
+  position: absolute;
+  left: 50%;
+  top: 548px;
+  width: 112px;
+  height: 39px;
+  transform: translateX(-50%);
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.battle-start-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chat-panel {
+  position: absolute;
+  left: 96px;
+  bottom: 40px;
+  width: 496px;
+  height: 165px;
+  padding: 14px 14px 12px;
+  background: #044154;
+  border: 4px solid #bf8a43;
+  box-shadow: 0 0 0 4px #e227a8 inset, 0 0 0 1px #efe0a0;
+}
+
+.chat-log {
+  height: 100px;
+  padding: 10px 16px;
+  background:
+    linear-gradient(rgba(0, 20, 23, .74), rgba(0, 20, 23, .74)),
+    url("assets/room/ui/room-chat-log-bg.png") center / 100% 100% no-repeat;
+  overflow: hidden;
+  color: #2de5d5;
+  font-size: 19px;
+  line-height: 1.35;
+  text-shadow: 1px 1px 0 #002b2d;
+}
+
+.chat-log p {
+  margin: 0;
+}
+
+.chat-input {
+  margin-top: 9px;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 42px;
+  gap: 8px;
+  align-items: center;
+}
+
+.chat-input span,
+.chat-input strong {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background: #051013;
+  border: 2px solid #c1bf78;
+  color: #fff8d2;
+  font-size: 17px;
+}
+
+.chat-input button {
+  height: 30px;
+  border: 2px solid #f0b477;
+  background: #b85b32;
+  color: #fff9db;
+  font-weight: 900;
+}
+
+.mode-panel {
+  position: absolute;
+  right: 78px;
+  bottom: 40px;
+  width: 330px;
+  height: 165px;
+  background: #044154;
+  border: 4px solid #bf8a43;
+  box-shadow: 0 0 0 4px #e227a8 inset, 0 0 0 1px #efe0a0;
+}
+
+.mode-title {
+  position: absolute;
+  left: 46px;
+  top: -30px;
+  width: 210px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: #d51b28;
+  border: 3px solid #751017;
+  color: #111;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.mode-preview {
+  position: absolute;
+  left: 48px;
+  top: 28px;
+  width: 214px;
+  height: 100px;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(rgba(0, 39, 61, .82), rgba(0, 39, 61, .82)),
+    url("assets/room/ui/room-map-bg.png") center / cover no-repeat;
+  border: 4px solid #c28b44;
+  color: #ffbd2a;
+  font-size: 76px;
+  font-weight: 900;
+}
+
+.mode-side {
+  position: absolute;
+  right: -48px;
+  width: 42px;
+  height: 69px;
+  padding: 5px 0;
+  writing-mode: vertical-rl;
+  border: 2px solid #f0b477;
+  background: #b85b32;
+  color: #fff9db;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.mode-side.side-a {
+  top: 30px;
+}
+
+.mode-side.side-b {
+  top: 103px;
+}
+
+.room-volume-panel {
+  position: absolute;
+  left: 14px;
+  bottom: 26px;
+  width: 82px;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+}
+
+.room-volume-control {
+  width: 28px;
+  height: 190px;
+  display: grid;
+  grid-template-rows: 140px 42px;
+  justify-items: center;
+  align-items: end;
+}
+
+.room-volume-control input {
+  width: 26px;
+  height: 140px;
+  margin: 0;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  -webkit-appearance: slider-vertical;
+  accent-color: #13fb3e;
+  cursor: pointer;
+}
+
+.room-volume-control span {
+  color: #13d7f1;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1;
+  writing-mode: vertical-rl;
+  text-shadow: 2px 2px 0 #022634, 0 0 4px #18b8da;
+}
+
+.room-ninju-editor {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  color: #f9f4d8;
+  background: #05084d;
+  border: 3px solid #e9edf8;
+  box-shadow: inset 0 0 0 2px #5360b8, 0 0 0 999px rgba(0, 0, 0, .25);
+  font-weight: 900;
+}
+
+.room-ninju-editor[hidden] {
+  display: none;
+}
+
+.ninju-editor-profile {
+  position: absolute;
+  left: 58px;
+  top: 42px;
+  right: 62px;
+  height: 180px;
+}
+
+.ninju-editor-avatar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 92px;
+  height: 92px;
+  padding: 10px;
+  background: #333;
+  border: 5px solid #9b9a8a;
+  box-shadow: inset 0 0 0 5px #1c1c1c;
+}
+
+.ninju-editor-stats {
+  position: absolute;
+  left: 142px;
+  top: 0;
+  display: grid;
+  gap: 12px;
+  font-size: 20px;
+}
+
+.ninju-editor-stats div,
+.ninju-editor-score div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ninju-editor-stats span,
+.ninju-editor-score span {
+  color: #f7f3ed;
+  font-size: 24px;
+  text-shadow: 2px 2px 0 #151515;
+}
+
+.ninju-editor-stats strong,
+.ninju-editor-score strong {
+  min-width: 72px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0 12px;
+  color: #edf550;
+  background: #064f8a;
+  border-radius: 3px;
+}
+
+.ninju-editor-stats button,
+.ninju-editor-title button,
+.ninju-editor-reset,
+.ninju-editor-actions button {
+  height: 40px; /* ????朱瞍脣?謍啗?頦蛔??憳蹓??蛔????蹓??剁??蹓鳴??殉朽??*/
+  padding: 0 18px; /* ???????垓瘣菟????????蹓賣斯?哨??什??????輸??銋??????????*/
+  color: #1f1f1f; /* ???????遴???*/
+  font-size: 18px; /* ???????剜???*/
+  font-weight: 900; /* ?????????血?謍梱?殉???剜?????*/
+  background: linear-gradient(#fff, #d4d4d4); /* ????制?啁?閰冽??垓瘣菟???????謘?湛?瘣菟?甄????謘?湛??*/
+  border: 2px solid #202020; /* ???????垓瘣菟?????殉?謢???血????嚗賃??遴???*/
+  border-radius: 5px; /* ???????垮?脫謅??剜?????*/
+}
+
+.ninju-editor-score {
+  position: absolute;
+  left: 462px;
+  top: -20px;
+  display: grid;
+  gap: 14px;
+}
+
+.ninju-editor-score strong {
+  min-width: 142px;
+  background: #053b9b;
+}
+
+.ninju-editor-mark {
+  position: absolute;
+  right: 26px;
+  top: -12px;
+  color: #fb171b;
+  font-size: 96px;
+  line-height: 1;
+  transform: rotate(-12deg);
+}
+
+.ninju-editor-board {
+  position: absolute;
+  left: 54px; /* ??唳?? X ??????閰???銋????*/
+  right: 54px; /* ??唳?? X ???????閰???銋????ｇ??????*/
+  bottom: 26px; /* ??唳?? Y ??????閰???銋????*/
+  height: 570px; /* ??唳???朱瞍脣?謍梱?殉???剜??????*/
+  background: #423821;
+  border: 8px solid rgba(55, 45, 26, .95); /* ??唳??????????*/
+  box-shadow: inset 0 0 0 4px #2d2415;
+}
+
+.ninju-editor-tabs {
+  position: absolute;
+  left: 26px; /* ??蹓???????皜? X ?選??剖?謍梱?殉???剜????*/
+  top: 66px; /* ??蹓???????皜? Y ?選??剖?謍梱?殉???剜?????*/
+  display: grid;
+  gap: 22px; /* ?對??/??謒??瞏?/??伐?????????*/
+}
+
+.ninju-editor-tabs button {
+  width: 70px; /* ??蹓????????瞍??*/
+  height: 38px; /* ??蹓???????朱瞍??*/
+  color: #1616d8;
+  font-size: 18px; /* ?對??/??謒??瞏?/??伐?????剜???*/
+  font-weight: 900;
+  background: linear-gradient(#fff, #f6eed0);
+  border: 3px solid #111;
+  border-radius: 5px;
+}
+
+.ninju-editor-tabs button.active {
+  background: #f0f22b;
+  color: #26222a;
+}
+
+.ninju-editor-series {
+  --series-x: 140px; /* series labels group X: bigger moves right. */
+  --series-y: 170px; /* series labels group Y: bigger moves down. */
+  --series-gap: 55px; /* vertical gap between series labels. */
+  --series-size: 18px; /* series label font size. */
+  --heal-text-offset-x: 0px; /* heal label X offset: positive moves right. */
+  --heal-text-offset-y: 0px; /* heal label Y offset: positive moves down. */
+  --support-text-offset-x: 0px; /* support label X offset: positive moves right. */
+  --support-text-offset-y: 0px; /* support label Y offset: positive moves down. */
+  --attack-text-offset-x: 0px; /* attack label X offset: positive moves right. */
+  --attack-text-offset-y: 0px; /* attack label Y offset: positive moves down. */
+  --special-text-offset-x: 0px; /* special label X offset: positive moves right. */
+  --special-text-offset-y: 0px; /* special label Y offset: positive moves down. */
+  --transform-text-offset-x: 0px; /* transform label X offset: positive moves right. */
+  --transform-text-offset-y: 0px; /* transform label Y offset: positive moves down. */
+  position: absolute;
+  left: var(--series-x);
+  top: var(--series-y);
+  display: grid;
+  gap: var(--series-gap);
+  z-index: 5; /* series labels layer: bigger stays above panel. */
+  font-size: var(--series-size);
+  font-weight: 200;
+  line-height: 1;
+  writing-mode: horizontal-tb;
+  pointer-events: none;
+}
+
+.ninju-editor-series span {
+  text-shadow:
+    1px 0 0 currentColor,
+    -1px 0 0 currentColor,
+    0 1px 0 currentColor,
+    0 -1px 0 currentColor,
+    0 0 5px currentColor,
+    2px 2px 0 rgba(0, 0, 0, .65);
+}
+
+.ninju-editor-series .heal {
+  color: #f02bd7;
+  transform: translate(var(--heal-text-offset-x), var(--heal-text-offset-y));
+}
+
+.ninju-editor-series .support {
+  color: #6a6df2;
+  transform: translate(var(--support-text-offset-x), var(--support-text-offset-y));
+}
+
+.ninju-editor-series .attack {
+  color: #ef5034;
+  transform: translate(var(--attack-text-offset-x), var(--attack-text-offset-y));
+}
+
+.ninju-editor-series .special {
+  color: #8fba72;
+  transform: translate(var(--special-text-offset-x), var(--special-text-offset-y));
+}
+
+.ninju-editor-series .transform {
+  color: #d24fa1;
+  transform: translate(var(--transform-text-offset-x), var(--transform-text-offset-y));
+}
+
+.ninju-editor-panel {
+  position: absolute;
+  left: 128px; /* editor panel X: bigger moves right. */
+  top: 20px; /* editor panel Y: bigger moves down. */
+  right: 48px; /* editor panel right inset: bigger narrows panel. */
+  height: 500px; /* editor panel height: bigger makes panel taller. */
+  padding: 16px 24px; /* editor panel inner padding: first Y, second X. */
+  background: #003b24;
+  border: 8px solid #040404; /* editor panel outer border size/color. */
+  box-shadow: inset 0 0 0 3px #13a0a8;
+}
+
+.ninju-editor-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  color: #dd7831;
+  font-size: 21px;
+  text-shadow: 1px 1px 0 #182316;
+}
+
+.ninju-editor-slot-row {
+  margin: 16px auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.ninju-editor-slots {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(6, 88px);
+  gap: 12px;
+  padding: 8px 18px;
+  background: linear-gradient(90deg, #fff4dc, #e5fff5);
+}
+
+.ninju-slot-choice,
+.ninju-option {
+  height: 30px;
+  border: 0;
+  border-radius: 0;
+  color: #232323;
+  font-size: 18px;
+  font-weight: 900;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .35);
+}
+
+.ninju-slot-choice.selected {
+  filter: brightness(1.04);
+  box-shadow: 0 0 0 2px #f3e94f;
+}
+
+.ninju-slot-choice.empty {
+  color: #60706d;
+  background: linear-gradient(#eef5ef, #cfd8d2);
+  border: 3px solid #365c60;
+  border-radius: 7px;
+}
+
+.ninju-editor-list {
+  --ninju-list-offset-x: 45px; /* option list X offset: positive moves right. */
+  --ninju-list-offset-y: 0px; /* option list Y offset: positive moves down. */
+  display: grid;
+  grid-template-columns: repeat(6, 88px);
+  gap: 16px 12px; /* option list gap: first vertical, second horizontal. */
+  align-items: center;
+  transform: translate(var(--ninju-list-offset-x), var(--ninju-list-offset-y)); /* option list group offset. */
+}
+
+.ninju-editor-list {
+  --ninju-list-row-gap: 18px; /* category row gap: bigger separates rows more. */
+  --heal-row-offset-x: 0px; /* heal row X offset: positive moves right. */
+  --heal-row-offset-y: 0px; /* heal row Y offset: positive moves down. */
+  --support-row-offset-x: 0px; /* support row X offset: positive moves right. */
+  --support-row-offset-y: 25px; /* support row Y offset: positive moves down. */
+  --attack-row-offset-x: 0px; /* attack row X offset: positive moves right. */
+  --attack-row-offset-y: 50px; /* attack row Y offset: positive moves down. */
+  --special-row-offset-x: 0px; /* special row X offset: positive moves right. */
+  --special-row-offset-y: 75px; /* special row Y offset: positive moves down. */
+  --transform-row-offset-x: 0px; /* transform row X offset: positive moves right. */
+  --transform-row-offset-y: 0px; /* transform row Y offset: positive moves down. */
+  grid-template-rows: repeat(5, 30px);
+  gap: var(--ninju-list-row-gap) 12px;
+}
+
+.ninju-option {
+  grid-column: var(--editor-order);
+}
+
+.ninju-option[data-editor-row="heal"] {
+  grid-row: 1;
+  transform: translate(var(--heal-row-offset-x), var(--heal-row-offset-y));
+}
+
+.ninju-option[data-editor-row="support"] {
+  grid-row: 2;
+  transform: translate(var(--support-row-offset-x), var(--support-row-offset-y));
+}
+
+.ninju-option[data-editor-row="attack"] {
+  grid-row: 3;
+  transform: translate(var(--attack-row-offset-x), var(--attack-row-offset-y));
+}
+
+.ninju-option[data-editor-row="special"] {
+  grid-row: 4;
+  transform: translate(var(--special-row-offset-x), var(--special-row-offset-y));
+}
+
+.ninju-option[data-editor-row="transform"] {
+  grid-row: 5;
+  transform: translate(var(--transform-row-offset-x), var(--transform-row-offset-y));
+}
+
+.ninju-slot-choice[data-ninju-type="moneyDart"],
+.ninju-option[data-ninju-type="moneyDart"] {
+  background-image: url("assets/ninju/buttons/3.png");
+}
+
+.ninju-slot-choice[data-ninju-type="flash"],
+.ninju-slot-choice[data-ninju-type="wildfire"],
+.ninju-slot-choice[data-ninju-type="freeze"],
+.ninju-option[data-ninju-type="flash"],
+.ninju-option[data-ninju-type="wildfire"],
+.ninju-option[data-ninju-type="freeze"] {
+  background-image: url("assets/ninju/buttons/1.png");
+}
+
+.ninju-option[data-ninju-type="moneyDart"] {
+  border-radius: 7px; /* 下面錢鏢外圈圓角：數字變大更圓。 */
+  box-shadow: 0 0 0 3px #f3e94f; /* 下面錢鏢外圈顏色/粗細：第三個數字變大會更粗。 */
+}
+
+.ninju-slot-choice[data-ninju-type="steel"],
+.ninju-slot-choice[data-ninju-type="hotBlood"],
+.ninju-option[data-ninju-type="steel"],
+.ninju-option[data-ninju-type="hotBlood"] {
+  background-image: url("assets/ninju/buttons/2.png");
+}
+
+.ninju-slot-choice[data-ninju-type="genki"],
+.ninju-slot-choice[data-ninju-type="kakki"],
+.ninju-slot-choice[data-ninju-type="shinki"],
+.ninju-option[data-ninju-type="genki"],
+.ninju-option[data-ninju-type="kakki"],
+.ninju-option[data-ninju-type="shinki"] {
+  background-image: url("assets/ninju/buttons/4.png");
+}
+
+.ninju-option.projectile {
+  background: linear-gradient(#fff3dc, #efc15e);
+}
+
+.ninju-option[data-ninju-type="moneyDart"] {
+  background: transparent url("assets/ninju/buttons/3.png") center / 100% 100% no-repeat;
+  box-shadow: none;
+}
+
+.ninju-option.selected {
+  border-color: #f1e535;
+}
+
+.ninju-editor-actions {
+  position: absolute;
+  left: 0; /* ?謘?/????皜? X ??????謍啗?????憳?*/
+  right: 0; /* ?謘?/????皜? X ???????謍啗?????憳?*/
+  bottom: 18px; /* ?謘?/????皜? Y ?選??剖?謍梱?殉???剜????*/
+  display: flex;
+  justify-content: center;
+  gap: 100px; /* ?謘???綽??殉次??虜??豲???*/
+}
+
+.hud {
+  display: none;
+  width: min(100%, calc((100vh - 62px) * 1.4117647));
+  grid-template-columns: minmax(0, 1fr) 180px 72px;
+  gap: 10px;
+  align-items: center;
+  min-height: 0;
+  padding: 5px 8px;
+  border: 1px solid rgba(75, 145, 148, 0.5);
+  background: #073641;
+}
+
+.unit-info {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  color: #edf8f1;
+  font-size: 17px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.unit-info div {
+  min-width: 0;
+}
+
+.meter {
+  height: 14px;
+  overflow: hidden;
+  background: #111818;
+  border: 1px solid rgba(230, 221, 166, 0.55);
+}
+
+.meter i {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #7f62b9, #f0b65b);
+}
+
+button {
+  height: 30px;
+  border: 1px solid #7aa594;
+  background: #1f342e;
+  color: #f7fff9;
+  padding: 0 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.12);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
